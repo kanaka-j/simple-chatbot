@@ -15,34 +15,49 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 2. Luxury Dark OLED / Glassmorphism Aesthetic CSS
+# 2. Master Luxury Dark OLED / Glassmorphism Aesthetic CSS
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
     /* Global Typography & Background */
     * {
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
+    code, pre {
+        font-family: 'JetBrains Mono', monospace !important;
+    }
+
+    /* Hide Streamlit default running spinner, header, and footer */
+    [data-testid="stStatusWidget"],
+    #MainMenu,
+    footer,
+    header {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* Ambient Glow Background */
     .stApp {
-        background-color: #0B0D14;
+        background-color: #080A10;
         background-image: 
             radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
-            radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.08) 0px, transparent 50%);
+            radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+            radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.5) 0px, transparent 80%);
         color: #E2E8F0;
     }
 
-    /* Main Container max width and padding */
+    /* Main Container max width and comfortable padding */
     .main .block-container {
-        padding-top: 2rem;
+        padding-top: 1.75rem;
         padding-bottom: 6rem;
-        max-width: 860px;
+        max-width: 880px;
     }
 
     /* Sidebar Styling */
     [data-testid="stSidebar"] {
-        background-color: #0E101A !important;
+        background-color: #0C0E17 !important;
         border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
     }
 
@@ -51,12 +66,12 @@ st.markdown("""
         border-color: rgba(255, 255, 255, 0.06) !important;
     }
 
-    /* Sidebar Buttons */
+    /* Sidebar Buttons (History Items) */
     [data-testid="stSidebar"] .stButton > button {
         border-radius: 12px !important;
         font-weight: 500 !important;
         font-size: 0.88rem !important;
-        padding: 0.6rem 1rem !important;
+        padding: 0.65rem 1rem !important;
         border: 1px solid rgba(255, 255, 255, 0.05) !important;
         background: rgba(255, 255, 255, 0.02) !important;
         color: #94A3B8 !important;
@@ -67,9 +82,9 @@ st.markdown("""
 
     [data-testid="stSidebar"] .stButton > button:hover {
         background: rgba(99, 102, 241, 0.12) !important;
-        border-color: rgba(99, 102, 241, 0.3) !important;
+        border-color: rgba(99, 102, 241, 0.35) !important;
         color: #FFFFFF !important;
-        transform: translateX(3px);
+        transform: translateX(4px);
     }
 
     /* Primary New Chat Button */
@@ -78,11 +93,11 @@ st.markdown("""
         color: #FFFFFF !important;
         font-weight: 600 !important;
         border: none !important;
-        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3) !important;
+        box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35) !important;
     }
 
     [data-testid="stSidebar"] .stButton > button[kind="primary"]:hover {
-        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5) !important;
+        box-shadow: 0 6px 24px rgba(79, 70, 229, 0.55) !important;
         transform: translateY(-1px) !important;
     }
 
@@ -163,14 +178,14 @@ st.markdown("""
 
     /* Assistant Message Style */
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) {
-        background: rgba(22, 25, 38, 0.6) !important;
+        background: rgba(18, 21, 33, 0.7) !important;
         border: 1px solid rgba(255, 255, 255, 0.06) !important;
     }
 
     /* Starter suggestion buttons in main window */
     .main .stButton > button {
         border-radius: 16px !important;
-        padding: 1rem !important;
+        padding: 1.1rem !important;
         background: rgba(255, 255, 255, 0.02) !important;
         border: 1px solid rgba(255, 255, 255, 0.07) !important;
         color: #E2E8F0 !important;
@@ -180,10 +195,10 @@ st.markdown("""
     }
 
     .main .stButton > button:hover {
-        background: rgba(99, 102, 241, 0.08) !important;
+        background: rgba(99, 102, 241, 0.09) !important;
         border-color: rgba(99, 102, 241, 0.4) !important;
         transform: translateY(-2px) !important;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
     }
 
     /* Floating Chat Input bar */
@@ -191,15 +206,15 @@ st.markdown("""
         border-radius: 24px !important;
         background-color: #121522 !important;
         border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
     }
 
     [data-testid="stChatInput"]:focus-within {
         border-color: #6366F1 !important;
-        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25), 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25), 0 10px 30px rgba(0, 0, 0, 0.35) !important;
     }
 
-    /* ✨ Highlight the Attachment (+) Button inside the Chat Input Bar ✨ */
+    /* Highlight the Attachment (+) Button */
     [data-testid="stChatInput"] button {
         background: rgba(99, 102, 241, 0.15) !important;
         border-radius: 12px !important;
@@ -208,14 +223,42 @@ st.markdown("""
     }
 
     [data-testid="stChatInput"] button:hover {
-        background: rgba(99, 102, 241, 0.3) !important;
+        background: rgba(99, 102, 241, 0.35) !important;
         color: #FFFFFF !important;
-        box-shadow: 0 0 10px rgba(99, 102, 241, 0.5) !important;
+        box-shadow: 0 0 12px rgba(99, 102, 241, 0.5) !important;
         transform: scale(1.08) !important;
     }
 
-    [data-testid="stChatInput"] svg {
-        fill: currentColor !important;
+    /* ✨ ChatGPT-Style Bouncing Typing Dots ✨ */
+    .typing-dots {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 8px;
+    }
+
+    .typing-dots span {
+        width: 7px;
+        height: 7px;
+        background: #818CF8;
+        border-radius: 50%;
+        display: inline-block;
+        animation: typingBounce 1.4s infinite ease-in-out both;
+    }
+
+    .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+    @keyframes typingBounce {
+        0%, 80%, 100% {
+            transform: scale(0.4);
+            opacity: 0.3;
+        }
+        40% {
+            transform: scale(1);
+            opacity: 1;
+            box-shadow: 0 0 8px #818CF8;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -438,22 +481,33 @@ if chat_input_response:
     # Generate and stream response from Gemini
     with st.chat_message("assistant", avatar="✨"):
         response_placeholder = st.empty()
+        
+        # 1. Immediately show smooth in-bubble pulsing dots while Gemini prepares response
+        response_placeholder.markdown("""
+        <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        """, unsafe_allow_html=True)
+        
         full_response = ""
 
         try:
-            # Stream response chunk-by-chunk
+            # 2. Stream response chunk-by-chunk from Gemini 3.6 Flash
             response = client.models.generate_content_stream(
                 model="gemini-3.6-flash",
                 contents=contents
             )
             for chunk in response:
-                full_response += chunk.text
-                response_placeholder.markdown(full_response + "▌")
+                if chunk.text:
+                    full_response += chunk.text
+                    response_placeholder.markdown(full_response + "▌")
             
             response_placeholder.markdown(full_response)
             
-            # Save assistant response to active session
+            # 3. Save assistant response to active session
             active_session["messages"].append({"role": "model", "content": full_response})
 
         except Exception as e:
-            st.error(f"Error communicating with AI: {e}")
+            response_placeholder.markdown(f"⚠️ **Error communicating with AI:** {e}")
